@@ -65,3 +65,21 @@ export function Nav(moduleName, rootElement)
         render(module.default, rootElement);
     });
 }
+
+export async function loadHtml(path)
+{
+    const response = await fetch(path, {method: 'GET', headers: {'Content-Type': 'text/html'}})
+    
+    if(!response.ok)
+    {
+        throw new Error(`Failed to load ${path}`);
+    }
+    
+    return  await response.text();
+}
+
+String.prototype.interpolate = function(params) {
+    const names = Object.keys(params);
+    const values = Object.values(params) ;
+    return new Function(...names, `return \`${this}\`;`)(...values);
+}
