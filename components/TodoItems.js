@@ -1,16 +1,16 @@
-import { listen } from '../lib.js';
+import {listen, loadHtml} from '../lib.js';
 
 export default 
 {
     templateData: null,
+    html: null,
     async init() {
         this.templateData = await fetch('https://jsonplaceholder.typicode.com/todos').then(response => response.json())
-
-        return (`
-            <div style="display: flex; flex-direction: column;">
-                ${this.templateData?.map(this.renderItem).join('')}
-            </div>
-        `);
+        this.html = await loadHtml("/components/TodoItems.html");
+        return this.html.interpolate({
+            data: this.templateData,
+            renderItem: this.renderItem
+        }); 
     },
     renderItem(item, index)
     {
