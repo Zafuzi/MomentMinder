@@ -4,9 +4,8 @@ const data = {
     loginError: null,
 }
 
-export async function init()
+export async function beforeRender()
 {
-    data.loginError = "test";
 }
 
 export async function render()
