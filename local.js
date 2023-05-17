@@ -1,5 +1,5 @@
 // start by importing the login page
-import {listen, loadHtml, loadModule} from './lib.js';
+import {listen, loadModule} from './lib.js';
 
 const route = window.location.pathname;
 const queryData = new URLSearchParams(window.location.search);
@@ -90,5 +90,6 @@ async function preloadRoutes()
 
 (async function()
 {
+    await preloadRoutes();
     await renderPage(page);
 })();

@@ -1,5 +1,3 @@
-export const Templates = {};
-
 export function listen(query, event, callback)
 {
     const elements = document.querySelectorAll(query);
