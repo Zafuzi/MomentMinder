@@ -1,16 +1,12 @@
 import {listen, loadHtml} from "/lib.js";
 
 const data = {
-    loginError: null,
-}
-
-export async function beforeRender()
-{
+    loginError: "",
 }
 
 export async function render()
 {
-    const html = await loadHtml('/components/login.html');
+    const html = await loadHtml('/components/login/login.html');
     return html.interpolate(data);
 }
 
