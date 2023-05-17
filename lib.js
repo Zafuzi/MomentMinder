@@ -1,3 +1,5 @@
+export const rootElement = document.getElementById('root');
+
 export function listen(query, event, callback)
 {
     const elements = document.querySelectorAll(query);
