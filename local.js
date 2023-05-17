@@ -48,11 +48,21 @@ async function renderPage(page)
         return;
     }
     
+    if(routes[page].module)
+    {
+        console.log(`rendering ${page} from cache`);
+    }
+    
     const module = routes[page].module || await loadModule(routes[page].path);
     if(!module)
     {
         rootElement.innerHTML = `<h1>404</h1>`;
         return;
+    }
+    
+    if(!routes[page].module)
+    {
+        routes[page].module = module;
     }
 
     if(typeof module.beforeRender === 'function')
