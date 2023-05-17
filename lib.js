@@ -1,3 +1,5 @@
+import {routes} from "/routes.js";
+
 export const rootElement = document.getElementById('root');
 
 export function listen(query, event, callback)
@@ -30,14 +32,27 @@ export async function loadModule(path)
 
 export async function loadHtml(path)
 {
-    const response = await fetch(path, {method: 'GET', headers: {'Content-Type': 'text/html'}})
+    const routeFromPath = routes[path];
+    const htmlPath = routeFromPath?.template;
+    const html = routeFromPath?.html;
     
-    if(!response.ok)
+    if(!htmlPath === "")
     {
-        throw new Error(`Failed to load ${path}`);
+        throw new Error(`No html file specified for ${path}`);
     }
     
-    return  await response.text();
+    if(!html)
+    {
+        console.log("fetching html", path);
+        const response = await fetch(htmlPath, {method: 'GET', headers: {'Content-Type': 'text/html'}})
+        if(!response.ok)
+        {
+            throw new Error(`Failed to load ${path}`);
+        }
+        routeFromPath.html = await response.text();
+    }
+    
+    return routeFromPath.html;
 }
 
 String.prototype.interpolate = function(params) {

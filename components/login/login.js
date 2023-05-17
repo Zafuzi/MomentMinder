@@ -6,7 +6,7 @@ const data = {
 
 export async function render()
 {
-    const html = await loadHtml('/components/login/login.html');
+    const html = await loadHtml("login");
     return html.interpolate(data);
 }
 

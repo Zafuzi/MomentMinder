@@ -3,16 +3,19 @@ import {loadModule, rootElement} from "/lib.js";
 export const routes = {
     'home': {
         path: '/components/home/home.js',
+        template: "/components/home/home.html",
         preload: true,
         module: null,
     },
     'about': {
         path: '/components/about/about.js',
+        template: "/components/about/about.html",
         preload: false,
         module: null,
     },
     'login': {
         path: '/components/login/login.js',
+        template: "/components/login/login.html",
         preload: true,
         module: null,
     },
