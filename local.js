@@ -15,7 +15,7 @@ const routes = {
     },
     'about': {
         path: '/components/about/about.js',
-        preload: true,
+        preload: false,
         module: null,
     },
     'login': {
